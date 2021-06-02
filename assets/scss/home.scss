@@ -1,0 +1,147 @@
+.banner {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  @include phone {
+    height: 60vh;
+    padding-top: 100px;
+    align-items: initial;
+  }
+
+  h1 {
+    max-width: 860px;
+    padding: 120px;
+    font-size: 3em;
+    font-weight: 900;
+
+    @include phone {
+      font-size: 2.5em;
+      padding: 20px;
+    }
+  }
+
+  svg {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 20%;
+    padding-right: 20px;
+
+    @include phone {
+      width: 90%;
+      left: 10%;
+      top: 60%;
+    }
+
+    path:nth-child(1) {
+      stroke-dasharray: 531;
+      stroke-dashoffset: 531;
+      animation: draw 2000ms ease forwards 3s;
+      fill: transparent;
+
+      &:hover {
+        transition: 500ms ease-in-out;
+        fill: #333;
+      }
+
+      &:not(:hover) {
+        transition: 2s ease-in-out;
+        fill: transparent;
+      }
+    }
+
+    path:nth-child(2) {
+      stroke-dasharray: 450;
+      stroke-dashoffset: 450;
+      fill: transparent;
+      animation: draw 2000ms ease forwards 2.5s;
+
+      &:hover {
+        transition: 500ms ease-in-out;
+        fill: #333;
+      }
+
+      &:not(:hover) {
+        transition: 2s ease-in-out;
+        fill: transparent;
+      }
+    }
+
+    path:nth-child(3) {
+      stroke-dasharray: 256;
+      stroke-dashoffset: 256;
+      animation: draw 2000ms ease forwards 2s;
+      fill: transparent;
+
+      &:hover {
+        transition: 500ms ease-in-out;
+        fill: #333;
+      }
+
+      &:not(:hover) {
+        transition: 2s ease-in-out;
+        fill: transparent;
+      }
+    }
+
+    path:nth-child(4) {
+      stroke-dasharray: 554;
+      stroke-dashoffset: 554;
+      animation: draw 2000ms ease forwards 1.5s;
+      fill: transparent;
+
+      &:hover {
+        transition: 500ms ease-in-out;
+        fill: #333;
+      }
+
+      &:not(:hover) {
+        transition: 2s ease-in-out;
+        fill: transparent;
+      }
+    }
+
+    path:nth-child(5) {
+      stroke-dasharray: 418;
+      stroke-dashoffset: 418;
+      animation: draw 2000ms ease forwards 1s;
+      fill: transparent;
+
+      &:hover {
+        transition: 500ms ease-in-out;
+        fill: #333;
+      }
+
+      &:not(:hover) {
+        transition: 2s ease-in-out;
+        fill: transparent;
+      }
+    }
+
+    path:nth-child(6) {
+      stroke-dasharray: 443;
+      stroke-dashoffset: 443;
+      animation: draw 2000ms ease forwards 0.5s;
+      fill: transparent;
+
+      &:hover {
+        transition: 500ms ease-in-out;
+        fill: #333;
+      }
+
+      &:not(:hover) {
+        transition: 2s ease-in-out;
+        fill: transparent;
+      }
+    }
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,22 @@
+.contact {
+  margin: 120px auto 0;
+  padding: 60px 0;
+  box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+  border-radius: 5px;
+
+  h2 {
+    margin: 0 120px;
+
+    @include phone {
+      margin: 0 20px;
+    }
+  }
+
+  p {
+    margin: 0 120px;
+    font-size: 1.2em;
+    @include phone {
+      margin: 0 20px;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+footer {
+  padding: 60px 120px;
+
+  @include phone {
+    padding: 60px 20px;
+  }
+}

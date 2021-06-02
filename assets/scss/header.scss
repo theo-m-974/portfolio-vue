@@ -1,0 +1,312 @@
+.fixed {
+  position: fixed;
+  transition: 200ms;
+  background-color: #fff;
+}
+
+header {
+  height: 80px;
+  width: 100vw;
+  font-size: 1em;
+  z-index: 10;
+
+  nav {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+    background-color: #fff;
+    padding: 0 100px;
+    z-index: 10;
+
+    @include phone {
+      padding: 0;
+    }
+
+    .burger {
+      width: calc(100% / 3);
+      display: none;
+
+      @include phone {
+        padding: 0 20px;
+        display: block;
+      }
+
+      #menu_checkbox {
+        display: none;
+      }
+
+      label {
+        position: absolute;
+        display: block;
+        width: 60px;
+        height: 60px;
+        margin: -30px auto 0 auto;
+        cursor: pointer;
+      }
+
+      label div {
+        position: relative;
+        top: 0;
+        height: 12px;
+        background-color: #333;
+        margin-bottom: 12px;
+        transition: 0.3s ease transform, 0.3s ease top, 0.3s ease width,
+          0.3s ease right;
+        border-radius: 2px;
+      }
+
+      label div:first-child {
+        transform-origin: 0;
+      }
+
+      label div:last-child {
+        margin-bottom: 0;
+        transform-origin: 60px;
+      }
+
+      label div:nth-child(2) {
+        right: 0;
+        width: 60px;
+      }
+
+      #menu_checkbox:checked + label div:first-child {
+        top: -6px;
+        transform: rotateZ(45deg);
+      }
+
+      #menu_checkbox:checked + label div:last-child {
+        top: 6px;
+        transform: rotateZ(45deg);
+      }
+
+      #menu_checkbox:checked + label div:nth-child(2) {
+        width: 85px;
+        top: 0;
+        right: 13px;
+        transform: rotateZ(-45deg);
+      }
+    }
+
+    .navigation--list {
+      width: calc(100% / 3);
+      display: flex;
+      height: 100%;
+      align-items: center;
+
+      @include phone {
+        display: none;
+
+        &.active {
+          position: absolute;
+          display: block;
+          margin-top: 160px;
+          width: 200vw;
+
+          li {
+            background-color: #fff;
+            width: 100vw;
+          }
+        }
+      }
+
+      li {
+        height: 100%;
+
+        a {
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          padding: 0 20px;
+          color: #000;
+          text-decoration: none;
+          text-align: center;
+          transition: all 2s;
+          text-transform: uppercase;
+
+          &::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 0%;
+            content: '.';
+            color: transparent;
+            background: #aaa;
+            height: 1px;
+            text-align: left;
+            margin: 0;
+            opacity: 0;
+          }
+
+          &:hover {
+            color: #fff;
+            z-index: 2;
+
+            &::after {
+              z-index: -10;
+              animation: fill-btn 600ms ease forwards;
+              -webkit-animation: fill-btn 600ms ease forwards;
+              -moz-animation: fill-btn 600ms ease forwards;
+              opacity: 1;
+            }
+          }
+
+          &.nav-active {
+            background-color: #333;
+            color: #fff;
+            z-index: 2;
+
+            &::after {
+              z-index: -10;
+              animation: fill-btn 600ms ease forwards;
+              -webkit-animation: fill-btn 600ms ease forwards;
+              -moz-animation: fill-btn 600ms ease forwards;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+
+      a {
+        svg {
+          height: auto;
+          width: 100%;
+          fill: transparent;
+
+          .cls-1 {
+            stroke: #333;
+          }
+
+          &:hover {
+            //animation: fill 300ms ease-in-out forwards;
+
+            .cls-1:nth-child(1) {
+              animation: fill 1400ms ease forwards;
+            }
+
+            .cls-1:nth-child(2) {
+              animation: fill 1200ms ease forwards;
+            }
+
+            .cls-1:nth-child(3) {
+              animation: fill 1000ms ease forwards;
+            }
+
+            .cls-1:nth-child(4) {
+              animation: fill 800ms ease forwards;
+            }
+
+            .cls-1:nth-child(5) {
+              animation: fill 600ms ease forwards;
+            }
+
+            .cls-1:nth-child(6) {
+              animation: fill 400ms ease forwards;
+            }
+            .cls-1:nth-child(7) {
+              animation: fill 200ms ease forwards;
+            }
+          }
+
+          &:not(:hover) {
+            .cls-1:nth-child(1) {
+              animation: unfill 200ms ease forwards;
+            }
+
+            .cls-1:nth-child(2) {
+              animation: unfill 400ms ease forwards;
+            }
+
+            .cls-1:nth-child(3) {
+              animation: unfill 600ms ease forwards;
+            }
+
+            .cls-1:nth-child(4) {
+              animation: unfill 800ms ease forwards;
+            }
+
+            .cls-1:nth-child(5) {
+              animation: unfill 1000ms ease forwards;
+            }
+
+            .cls-1:nth-child(6) {
+              animation: unfill 1200ms ease forwards;
+            }
+            .cls-1:nth-child(7) {
+              animation: unfill 1400ms ease forwards;
+            }
+          }
+        }
+      }
+    }
+
+    .social-medias--list {
+      width: calc(100% / 3);
+      display: flex;
+      justify-content: flex-end;
+
+      @include phone {
+        display: none;
+      }
+
+      li {
+        padding: 0 20px;
+        width: 80px;
+
+        @include phone {
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+/* Keyframes */
+
+@keyframes fill {
+  from {
+    fill: transparent;
+  }
+
+  to {
+    fill: #333;
+  }
+}
+
+@keyframes unfill {
+  from {
+    fill: #333;
+  }
+
+  to {
+    fill: transparent;
+  }
+}
+
+@keyframes fill-btn {
+  0% {
+    width: 0%;
+    height: 1px;
+  }
+  50% {
+    width: 100%;
+    height: 1px;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    background: #333;
+  }
+}

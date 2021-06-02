@@ -1,0 +1,423 @@
+.projects {
+  position: relative;
+  margin: 120px auto 0;
+
+  h2 {
+    padding: 0;
+
+    @include phone {
+      padding: 0 20px;
+    }
+  }
+
+  .projects-nav {
+    box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+    z-index: 9;
+    height: 80px;
+    background-color: #fff;
+    padding: 0 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    @include phone {
+      padding: 0;
+    }
+
+    .burger {
+      width: calc(100% / 3);
+      display: none;
+
+      @include phone {
+        padding: 0 20px;
+        display: block;
+      }
+
+      #menu_projects_checkbox {
+        display: none;
+      }
+
+      label {
+        position: absolute;
+        display: block;
+        width: 60px;
+        height: 60px;
+        margin: -30px auto 0 auto;
+        cursor: pointer;
+        right: 20px;
+      }
+
+      label div {
+        position: relative;
+        top: 0;
+        height: 12px;
+        background-color: #333;
+        margin-bottom: 12px;
+        transition: 0.3s ease transform, 0.3s ease top, 0.3s ease width,
+          0.3s ease right;
+        border-radius: 2px;
+      }
+
+      label div:first-child {
+        transform-origin: 0;
+      }
+
+      label div:last-child {
+        margin-bottom: 0;
+        transform-origin: 60px;
+      }
+
+      label div:nth-child(2) {
+        right: 0;
+        width: 60px;
+      }
+
+      #menu_projects_checkbox:checked + label div:first-child {
+        top: -6px;
+        transform: rotateZ(45deg);
+      }
+
+      #menu_projects_checkbox:checked + label div:last-child {
+        top: 6px;
+        transform: rotateZ(45deg);
+      }
+
+      #menu_projects_checkbox:checked + label div:nth-child(2) {
+        width: 85px;
+        top: 0;
+        right: 13px;
+        transform: rotateZ(-45deg);
+      }
+    }
+
+    ul {
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      @include phone {
+        display: none;
+        flex-direction: column;
+
+        &.project-menu-active {
+          display: block;
+          margin-top: 160px;
+          width: 100vw;
+          position: absolute;
+          li {
+            background-color: #fff;
+            width: 100vw;
+          }
+        }
+      }
+
+      li {
+        cursor: pointer;
+        height: 100%;
+
+        h3 {
+          cursor: pointer;
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          padding: 0 20px;
+          color: #000;
+          text-decoration: none;
+          text-align: center;
+          transition: all 2s;
+          text-transform: uppercase;
+
+          &::after {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 0%;
+            content: '.';
+            color: transparent;
+            background: #aaa;
+            height: 1px;
+            text-align: left;
+            margin: 0;
+            opacity: 0;
+          }
+
+          &:hover {
+            color: #fff;
+            z-index: 0;
+
+            &::after {
+              z-index: -10;
+              animation: fill-btn 600ms ease forwards;
+              -webkit-animation: fill-btn 600ms ease forwards;
+              -moz-animation: fill-btn 600ms ease forwards;
+              opacity: 1;
+            }
+          }
+
+          &.active {
+            color: #fff;
+            z-index: 0;
+
+            &::after {
+              z-index: -10;
+              animation: fill-btn 600ms ease forwards;
+              -webkit-animation: fill-btn 600ms ease forwards;
+              -moz-animation: fill-btn 600ms ease forwards;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .projects-template {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    z-index: 0;
+    box-shadow: inset 0 0 20px 0 rgba(56, 56, 56, 0.2);
+    padding: 60px 120px;
+    margin-bottom: 120px;
+
+    @include phone {
+      padding: 60px 20px;
+    }
+
+    .project-image {
+      cursor: pointer;
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 20px;
+      object-fit: cover;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+        width: auto;
+      }
+
+      .project-name {
+        position: absolute;
+        left: 50%;
+        margin-top: 200px;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+        height: 100px;
+        font-weight: 600;
+        opacity: 0;
+        transition: 200ms;
+      }
+      &:hover .project-name {
+        opacity: 1;
+      }
+    }
+  }
+
+  .project-modale {
+    position: relative;
+    display: none;
+    // position: absolute;
+    // top: 0;
+    // left: 100%;
+    margin: 120px 0;
+    padding: 0 120px;
+    background-color: #fff;
+
+    @include phone {
+      padding: 0 20px;
+    }
+
+    &.displayed {
+      display: block;
+    }
+
+    h3 {
+      font-size: 3em;
+      font-weight: 800;
+      padding-bottom: 120px;
+
+      @include phone {
+        font-size: 2em;
+      }
+    }
+
+    .close-btn {
+      cursor: pointer;
+      position: absolute;
+      font-size: 2em;
+      font-weight: 500;
+      top: -35px;
+      right: 120px;
+
+      @include phone {
+        right: 20px;
+        top: -85px;
+      }
+    }
+
+    .project-info--grid {
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+      padding-top: 30px;
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-column-gap: 2px;
+      grid-row-gap: 2px;
+      -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      -ms-grid-rows: auto;
+      grid-template-rows: auto;
+
+      @include phone {
+        -ms-grid-columns: auto;
+        grid-template-columns: auto;
+        -ms-grid-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+
+      .project-brief {
+        padding-bottom: 60px;
+
+        @include phone {
+          padding-bottom: 0;
+        }
+
+        .project-brief-header {
+          font-size: 1.4em;
+          font-weight: 500;
+          padding-bottom: 30px;
+        }
+      }
+    }
+
+    .wrapper {
+      padding: 60px 0;
+
+      @include phone {
+        &.flex {
+          flex-direction: column;
+        }
+      }
+
+      .project-wrapper {
+        width: 50%;
+        margin-right: auto;
+
+        @include phone {
+          width: 100%;
+          margin-right: 0;
+        }
+      }
+      .project-info-description {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        line-height: 1.6;
+
+        @include phone {
+          padding-bottom: 60px;
+        }
+      }
+      .btn-visit {
+        border-radius: 5px;
+        width: 300px;
+        margin: 60px auto 0;
+        text-align: center;
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.2rem;
+        line-height: 1.6;
+
+        a {
+          padding: 10px 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+
+      .project-image-prez {
+        width: 40%;
+
+        img {
+          box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+
+          border-radius: 5px;
+        }
+
+        @include phone {
+          padding-top: 60px;
+          width: 100%;
+        }
+      }
+    }
+
+    .project-video {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .project-video::after {
+      padding-top: 56.25%;
+      display: block;
+      content: '';
+    }
+
+    .project-video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .project-images--wrapper {
+      margin: 0 auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+
+      @include phone {
+        flex-direction: column;
+      }
+
+      .project-image {
+        padding: 20px 20px;
+        width: 50%;
+
+        @include phone {
+          width: 100%;
+        }
+        img {
+          margin: 0 auto;
+          box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
