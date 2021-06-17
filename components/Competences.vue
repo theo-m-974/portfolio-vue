@@ -1,5 +1,5 @@
 <template>
-  <div class="competences">
+  <div id="competences-anchor" class="competences section">
     <div class="wrapper--competences-prog">
       <h2>Programmation</h2>
       <div class="wrapper--icons">

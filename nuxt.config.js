@@ -16,7 +16,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Théo Moyano - Programmeur, intégrateur, designer',
+        content: 'Théo Moyano - Programmeur, intégrateur',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -43,6 +43,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    'nuxt-i18n',
+    'nuxt-fullpage.js',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -59,7 +61,7 @@ export default {
    */
   generate: { subFolders: true },
   router: {
-    base: './',
+    base: '/',
     mode: 'hash',
     scrollBehavior: async (to, from, savedPosition) => {
       if (savedPosition) {

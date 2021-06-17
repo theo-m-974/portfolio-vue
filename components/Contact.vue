@@ -1,12 +1,22 @@
 <template>
-  <div id="contact" class="contact">
+  <div id="contact-anchor" class="contact section">
     <h2>Contact</h2>
-    <p>
-      Restons en contact :
-      <a href="mailto:theo.moy4no@gmail.com" target="_blank"
-        >theo.moy4no@gmail.com</a
+
+    <div class="contact-form">
+      <form
+        action="https://formsubmit.co/theo.moy4no@gmail.com"
+        method="POST"
+        name="emailForm"
       >
-    </p>
+        <label for="contactName" required>Nom :</label>
+        <input type="text" name="contactName" />
+        <label for="contactEmail" required>Email :</label>
+        <input type="email" name="contactEmail" />
+        <label for="contactMessage" required>Message :</label>
+        <textarea name="contactMessage" cols="30" rows="10"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -17,5 +27,7 @@ export default {
   data() {
     return {}
   },
+
+  methods: {},
 }
 </script>

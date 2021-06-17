@@ -1,6 +1,6 @@
 <template>
-  <header id="header" class="header fixed">
-    <nav>
+  <header class="header fixed">
+    <nav id="header">
       <div class="burger">
         <input
           id="menu_checkbox"
@@ -19,41 +19,43 @@
         class="navigation--list"
         :class="isMenuActive ? 'active' : ''"
       >
-        <li
-          @click="
-            selectMenu('projects')
-            displayMenu()
-          "
-        >
-          <a href="#projects" :class="projectIsActive ? 'nav-active' : ''"
+        <li @click="displayMenu()">
+          <a
+            href="#projects-anchor"
+            class="project-nav"
+            :class="projectIsActive ? 'nav-active' : ''"
             >Réalisations</a
           >
         </li>
-        <li
-          @click="
-            selectMenu('about')
-            displayMenu()
-          "
-        >
-          <a href="#about" :class="aboutIsActive ? 'nav-active' : ''"
+        <li @click="displayMenu()">
+          <a
+            href="#about"
+            class="about-nav"
+            :class="aboutIsActive ? 'nav-active' : ''"
             >À propos</a
           >
         </li>
+        <li @click="displayMenu()">
+          <a
+            href="#competences"
+            class="competences-nav"
+            :class="aboutIsActive ? 'nav-active' : ''"
+            >Compétences</a
+          >
+        </li>
 
-        <li
-          @click="
-            selectMenu('contact')
-            displayMenu()
-          "
-        >
-          <a href="#contact" :class="contactIsActive ? 'nav-active' : ''"
+        <li @click="displayMenu()">
+          <a
+            href="#contact"
+            class="contact-nav"
+            :class="contactIsActive ? 'nav-active' : ''"
             >Contact</a
           >
         </li>
       </ul>
 
-      <div class="logo" @click="selectMenu('home')">
-        <a href="#">
+      <div class="logo">
+        <a href="#home">
           <svg
             id="calque_1"
             data-name="calque 1"
@@ -120,6 +122,8 @@
   </header>
 </template>
 <script>
+import $ from 'jquery'
+
 export default {
   name: 'Header',
 
@@ -134,41 +138,79 @@ export default {
     }
   },
 
-  methods: {
-    scroll(id) {
-      const element = document.getElementById(id)
-      const yOffset = 80
-      let y = element.getBoundingClientRect().top + window.pageYOffset
-      y -= yOffset
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    },
-    displayMenu() {
-      this.isMenuActive = !this.isMenuActive
-      this.isChecked = !this.isChecked
-    },
+  mounted() {
+    const projectsContainer = $('#projects')
+    const projectsOffsetTop = projectsContainer.position().top
 
-    selectMenu(e) {
-      if (e === 'projects') {
-        this.projectIsActive = true
-        this.aboutIsActive = false
-        this.contactIsActive = false
-        this.homeIsActive = false
-      } else if (e === 'about') {
-        this.projectIsActive = false
-        this.aboutIsActive = true
-        this.contactIsActive = false
-        this.homeIsActive = false
-      } else if (e === 'contact') {
-        this.projectIsActive = false
-        this.aboutIsActive = false
-        this.contactIsActive = true
-        this.homeIsActive = false
-      } else if (e === 'home') {
+    const aboutContainer = $('#about')
+    const aboutOffsetTop = aboutContainer.position().top
+
+    const contactContainer = $('#contact')
+    const contactOffsetTop = contactContainer.position().top
+
+    const homeContainer = $('#home')
+    const homeOffsetTop = homeContainer.position().top
+
+    const competencesContainer = $('#competences')
+    const competencesOffsetTop = competencesContainer.position().top
+
+    document.addEventListener('scroll', function () {
+      // if inférieur a projet et supérieur à home
+      if (
+        window.scrollY <= projectsOffsetTop &&
+        window.scrollY >= homeOffsetTop
+      ) {
+        $('.project-nav').removeClass('nav-active')
+        $('.about-nav').removeClass('nav-active')
+        $('.contact-nav').removeClass('nav-active')
         this.projectIsActive = false
         this.aboutIsActive = false
         this.contactIsActive = false
         this.homeIsActive = true
       }
+      // if inférieur a about et supérieur à home
+      else if (
+        window.scrollY <= aboutOffsetTop &&
+        window.scrollY >= homeOffsetTop
+      ) {
+        $('.project-nav').addClass('nav-active')
+        $('.about-nav').removeClass('nav-active')
+        $('.contact-nav').removeClass('nav-active')
+        this.projectIsActive = true
+        this.aboutIsActive = false
+        this.contactIsActive = false
+        this.homeIsActive = false
+      }
+      // if inférieur a contact et supérieur à projet
+      else if (
+        window.scrollY <= contactOffsetTop &&
+        window.scrollY >= projectsOffsetTop
+      ) {
+        $('.project-nav').removeClass('nav-active')
+        $('.about-nav').addClass('nav-active')
+        $('.contact-nav').removeClass('nav-active')
+        this.projectIsActive = false
+        this.aboutIsActive = false
+        this.contactIsActive = true
+        this.homeIsActive = false
+      }
+      // if supérieur à competences
+      else if (window.scrollY >= competencesOffsetTop) {
+        $('.project-nav').removeClass('nav-active')
+        $('.about-nav').removeClass('nav-active')
+        $('.contact-nav').addClass('nav-active')
+        this.projectIsActive = false
+        this.aboutIsActive = true
+        this.contactIsActive = false
+        this.homeIsActive = false
+      }
+    })
+  },
+
+  methods: {
+    displayMenu() {
+      this.isMenuActive = !this.isMenuActive
+      this.isChecked = !this.isChecked
     },
   },
 }
