@@ -1,5 +1,6 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
-  <div id="projects-anchor" class="projects section">
+  <div id="projects" class="projects section">
     <div class="projects-template">
       <!-- <div class="projects-nav">
         <h2>Projets</h2>
@@ -74,7 +75,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="project-modale" :class="modaleIsDisplayed ? 'displayed' : ''">
+      <div class="project-modale" :class="modaleIsDisplayed ? 'displayed' : ''">
         <h3>{{ selectedProject.name }}</h3>
         <div class="close-btn" @click="displayModale()">X</div>
 
@@ -160,7 +161,7 @@
             />
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -170,6 +171,13 @@ import projects from '@/assets/data/projects.js'
 
 export default {
   name: 'Projects',
+
+  props: {
+    projectsInViewport: {
+      type: Boolean,
+      required: true,
+    },
+  },
 
   data() {
     return {
@@ -185,6 +193,8 @@ export default {
       isChecked: false,
     }
   },
+
+  mounted() {},
 
   methods: {
     selectType(e) {

@@ -1,7 +1,6 @@
 .fixed {
-  position: fixed;
   transition: 200ms;
-  background-color: #fff;
+  background-color: red;
 }
 
 header {
@@ -9,6 +8,9 @@ header {
   width: 100vw;
   font-size: 1em;
   z-index: 10;
+  top: 0;
+  left: 0;
+  position: absolute;
 
   nav {
     height: 100%;

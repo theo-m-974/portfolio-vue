@@ -1,6 +1,6 @@
 <template>
-  <header class="header fixed">
-    <nav id="header">
+  <header id="header" class="header fixed">
+    <nav>
       <div class="burger">
         <input
           id="menu_checkbox"
@@ -20,42 +20,22 @@
         :class="isMenuActive ? 'active' : ''"
       >
         <li @click="displayMenu()">
-          <a
-            href="#projects-anchor"
-            class="project-nav"
-            :class="projectIsActive ? 'nav-active' : ''"
-            >Réalisations</a
-          >
+          <a href="#projects-page" class="project-nav">Réalisations</a>
         </li>
         <li @click="displayMenu()">
-          <a
-            href="#about"
-            class="about-nav"
-            :class="aboutIsActive ? 'nav-active' : ''"
-            >À propos</a
-          >
+          <a href="#about-page" class="about-nav">À propos</a>
         </li>
         <li @click="displayMenu()">
-          <a
-            href="#competences"
-            class="competences-nav"
-            :class="aboutIsActive ? 'nav-active' : ''"
-            >Compétences</a
-          >
+          <a href="#skills-page" class="competences-nav">Compétences</a>
         </li>
 
         <li @click="displayMenu()">
-          <a
-            href="#contact"
-            class="contact-nav"
-            :class="contactIsActive ? 'nav-active' : ''"
-            >Contact</a
-          >
+          <a href="#contact-page" class="contact-nav">Contact</a>
         </li>
       </ul>
 
       <div class="logo">
-        <a href="#home">
+        <a href="#home-page">
           <svg
             id="calque_1"
             data-name="calque 1"
@@ -122,89 +102,14 @@
   </header>
 </template>
 <script>
-import $ from 'jquery'
-
 export default {
   name: 'Header',
 
   data() {
     return {
       isMenuActive: false,
-      projectIsActive: false,
-      aboutIsActive: false,
-      contactIsActive: false,
-      homeIsActive: true,
       isChecked: false,
     }
-  },
-
-  mounted() {
-    const projectsContainer = $('#projects')
-    const projectsOffsetTop = projectsContainer.position().top
-
-    const aboutContainer = $('#about')
-    const aboutOffsetTop = aboutContainer.position().top
-
-    const contactContainer = $('#contact')
-    const contactOffsetTop = contactContainer.position().top
-
-    const homeContainer = $('#home')
-    const homeOffsetTop = homeContainer.position().top
-
-    const competencesContainer = $('#competences')
-    const competencesOffsetTop = competencesContainer.position().top
-
-    document.addEventListener('scroll', function () {
-      // if inférieur a projet et supérieur à home
-      if (
-        window.scrollY <= projectsOffsetTop &&
-        window.scrollY >= homeOffsetTop
-      ) {
-        $('.project-nav').removeClass('nav-active')
-        $('.about-nav').removeClass('nav-active')
-        $('.contact-nav').removeClass('nav-active')
-        this.projectIsActive = false
-        this.aboutIsActive = false
-        this.contactIsActive = false
-        this.homeIsActive = true
-      }
-      // if inférieur a about et supérieur à home
-      else if (
-        window.scrollY <= aboutOffsetTop &&
-        window.scrollY >= homeOffsetTop
-      ) {
-        $('.project-nav').addClass('nav-active')
-        $('.about-nav').removeClass('nav-active')
-        $('.contact-nav').removeClass('nav-active')
-        this.projectIsActive = true
-        this.aboutIsActive = false
-        this.contactIsActive = false
-        this.homeIsActive = false
-      }
-      // if inférieur a contact et supérieur à projet
-      else if (
-        window.scrollY <= contactOffsetTop &&
-        window.scrollY >= projectsOffsetTop
-      ) {
-        $('.project-nav').removeClass('nav-active')
-        $('.about-nav').addClass('nav-active')
-        $('.contact-nav').removeClass('nav-active')
-        this.projectIsActive = false
-        this.aboutIsActive = false
-        this.contactIsActive = true
-        this.homeIsActive = false
-      }
-      // if supérieur à competences
-      else if (window.scrollY >= competencesOffsetTop) {
-        $('.project-nav').removeClass('nav-active')
-        $('.about-nav').removeClass('nav-active')
-        $('.contact-nav').addClass('nav-active')
-        this.projectIsActive = false
-        this.aboutIsActive = true
-        this.contactIsActive = false
-        this.homeIsActive = false
-      }
-    })
   },
 
   methods: {

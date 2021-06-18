@@ -1,5 +1,5 @@
 <template>
-  <div id="contact-anchor" class="contact section">
+  <div id="contact" class="contact section">
     <h2>Contact</h2>
 
     <div class="contact-form">

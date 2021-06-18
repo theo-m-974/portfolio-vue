@@ -1,5 +1,5 @@
 <template>
-  <div id="home-anchor" class="banner section">
+  <div id="home" class="banner section">
     <h1>Développeur front-end <br />Intégrateur</h1>
     <svg
       id="Calque_1"
