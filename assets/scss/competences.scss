@@ -9,40 +9,45 @@
     padding: 0 20px;
   }
 
-  .wrapper--icons {
+  .competences--wrapper {
     display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    width: 100%;
-    .logo {
+    justify-content: space-between;
+
+    .wrapper--icons {
       display: flex;
-      width: 100px;
-      padding: 20px 20px 0;
-    }
-  }
-
-  .wrapper--competences-prog {
-    border-radius: 5px;
-    box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
-    padding: 60px;
-    width: 45%;
-    @include phone {
+      justify-content: center;
+      flex-flow: row wrap;
       width: 100%;
-      padding: 20px;
-      margin-bottom: 60px;
+      .logo {
+        display: flex;
+        width: 100px;
+        padding: 20px 20px 0;
+      }
     }
-  }
 
-  .wrapper--competences-design {
-    border-radius: 5px;
-    box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
-    padding: 60px;
-    width: 45%;
+    .wrapper--competences-prog {
+      border-radius: 5px;
+      box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+      padding: 60px;
+      width: 45%;
+      @include phone {
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 60px;
+      }
+    }
 
-    @include phone {
-      width: 100%;
-      padding: 20px;
-      margin-top: 60px;
+    .wrapper--competences-design {
+      border-radius: 5px;
+      box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+      padding: 60px;
+      width: 45%;
+
+      @include phone {
+        width: 100%;
+        padding: 20px;
+        margin-top: 60px;
+      }
     }
   }
 }
