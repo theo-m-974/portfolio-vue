@@ -1,6 +1,6 @@
 <template>
-  <div id="contact" class="section">
-    <div class="contact">
+  <div id="contact" class="contact section">
+    <div class="contact-wrapper">
       <h2>Contact</h2>
 
       <div class="contact-form">
@@ -22,6 +22,7 @@
                 type="text"
                 name="name"
                 required=""
+                @focus="$event.target.select()"
               />
             </div>
             <div>
@@ -29,10 +30,11 @@
               <input
                 id="email"
                 v-model="email.value"
+                :class="{ email, error: !email.valid }"
                 type="email"
                 name="email"
                 required=""
-                :class="{ email, error: !email.valid }"
+                @focus="$event.target.select()"
               />
             </div>
             <div>
@@ -44,6 +46,7 @@
                 name="textarea"
                 required=""
                 :maxlength="message.maxlength"
+                @focus="$event.target.select()"
               ></textarea>
               <span class="counter"
                 >{{ message.text.length }} / {{ message.maxlength }}</span

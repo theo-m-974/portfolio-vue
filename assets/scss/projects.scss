@@ -1,9 +1,8 @@
 .projects {
-  margin: 120px auto 0;
+  height: 200vh;
+  box-shadow: inset 0 0 20px 0 rgba(56, 56, 56, 0.2);
 
   h2 {
-    padding: 0;
-
     @include phone {
       padding: 0 20px;
     }
@@ -179,20 +178,23 @@
   .projects-template {
     position: relative;
     height: 100%;
+    padding: 120px;
+
+    @include phone {
+      padding: 120px 20px 40px;
+    }
 
     .projects-template--wrapper {
-      height: 100%;
       width: 100%;
       float: left;
       align-items: center;
       display: flex;
       justify-content: center;
       z-index: 0;
-      box-shadow: inset 0 0 20px 0 rgba(56, 56, 56, 0.2);
-      padding: 60px 120px;
 
       @include phone {
-        padding: 60px 20px;
+        flex-direction: column;
+        padding-top: 40px;
       }
 
       .project-image {
@@ -240,6 +242,7 @@
 
     .project-modale {
       top: 0;
+      left: 0;
       float: left;
       width: 100%;
       position: absolute;
@@ -249,7 +252,7 @@
       background-color: #fff;
 
       @include phone {
-        padding: 0 20px;
+        padding: 120px 20px;
       }
 
       &.displayed {

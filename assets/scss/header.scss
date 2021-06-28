@@ -97,6 +97,31 @@ header {
       height: 100%;
       align-items: center;
 
+      .sub-menu {
+        position: absolute;
+        cursor: pointer;
+        height: 400%;
+        color: #000;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        z-index: 999;
+        box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+
+        li {
+          background-color: #fff;
+          height: 25%;
+        }
+      }
+
+      .projects--li {
+        &:hover {
+          .sub-menu {
+            display: block;
+          }
+        }
+      }
+
       @include phone {
         display: none;
 

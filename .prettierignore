@@ -1,0 +1,4 @@
+# Ignore artifacts:
+/assets/js/*.js
+
+# Ignore all HTML files:

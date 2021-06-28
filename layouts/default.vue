@@ -2,10 +2,10 @@
   <div>
     <client-only>
       <full-page id="fullpage" :options="options">
-        <Header />
-        <Home />
         <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-        <Projects :projectsInViewport="isOnProjectsPage" />
+        <Header :projectsInViewport="isOnProjectsPage" />
+        <Home />
+        <Projects />
         <About />
         <Competences />
         <Contact />
@@ -36,12 +36,6 @@ export default {
     Footer,
   },
 
-  props: {
-    projectsInViewport: {
-      type: Boolean,
-      required: false,
-    },
-  },
   data() {
     return {
       options: {
@@ -51,6 +45,9 @@ export default {
         menu: '#header',
         fixedElements: '#header',
         navigation: true,
+        scrollOverflow: true,
+        autoscrolling: true,
+        normalScrollElements: '.project-modale, #footer-anchor',
         anchors: [
           'home-page',
           'projects-page',
@@ -60,6 +57,7 @@ export default {
           'footer-page',
         ],
       },
+
       isOnProjectsPage: false,
     }
   },

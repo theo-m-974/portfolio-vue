@@ -2,6 +2,7 @@
 <template>
   <div id="projects" class="projects section">
     <div class="projects-template">
+      <div class="projects-title"><h2>Réalisations</h2></div>
       <!-- <div class="projects-nav">
         <h2>Projets</h2>
         <div class="burger">
@@ -171,13 +172,6 @@ import projects from '@/assets/data/projects.js'
 
 export default {
   name: 'Projects',
-
-  props: {
-    projectsInViewport: {
-      type: Boolean,
-      required: true,
-    },
-  },
 
   data() {
     return {

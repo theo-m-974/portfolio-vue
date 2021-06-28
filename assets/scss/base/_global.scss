@@ -34,3 +34,11 @@ h3 {
 .flex {
   display: flex;
 }
+
+#home.section,
+#projects.section,
+#about.section,
+#competences.section,
+#contact.section {
+  margin: 80px auto 0;
+}

@@ -19,8 +19,16 @@
         class="navigation--list"
         :class="isMenuActive ? 'active' : ''"
       >
-        <li @click="displayMenu()">
-          <a href="#projects-page" class="project-nav">Réalisations</a>
+        <li class="projects--li" @click="displayMenu()">
+          <a id="projects-link" href="#projects-page" class="project-nav"
+            >Réalisations</a
+          >
+          <ul v-if="projectsInViewport || isOnHover" class="sub-menu">
+            <li><a href="#projects-page">Programmation</a></li>
+            <li><a href="#projects-page">Intégration</a></li>
+            <li><a href="#projects-page">Design</a></li>
+            <li><a href="#projects-page">Audiovisuel</a></li>
+          </ul>
         </li>
         <li @click="displayMenu()">
           <a href="#about-page" class="about-nav">À propos</a>
@@ -105,10 +113,29 @@
 export default {
   name: 'Header',
 
+  props: {
+    projectsInViewport: {
+      type: Boolean,
+      require: true,
+    },
+  },
+
   data() {
     return {
       isMenuActive: false,
       isChecked: false,
+      isOnHover: false,
+    }
+  },
+
+  mounted() {
+    document.getElementById('projects-link').onmouseover = function () {
+      this.isOnHover = true
+      console.log(this.isOnHover)
+    }
+    document.getElementById('projects-link').onmouseout = function () {
+      this.isOnHover = false
+      console.log(this.isOnHover)
     }
   },
 
