@@ -23,11 +23,33 @@
           <a id="projects-link" href="#projects-page" class="project-nav"
             >Réalisations</a
           >
-          <ul v-if="projectsInViewport || isOnHover" class="sub-menu">
-            <li><a href="#projects-page">Programmation</a></li>
-            <li><a href="#projects-page">Intégration</a></li>
-            <li><a href="#projects-page">Design</a></li>
-            <li><a href="#projects-page">Audiovisuel</a></li>
+          <ul
+            :class="
+              projectsInViewport || isOnHover
+                ? 'sub-menu sub-menu-active'
+                : 'sub-menu'
+            "
+          >
+            <li>
+              <a href="#projects-page" @click="selectProjectType('prog')"
+                >Programmation</a
+              >
+            </li>
+            <li>
+              <a href="#projects-page" @click="selectProjectType('integration')"
+                >Intégration</a
+              >
+            </li>
+            <li>
+              <a href="#projects-page" @click="selectProjectType('design')"
+                >Design</a
+              >
+            </li>
+            <li>
+              <a href="#projects-page" @click="selectProjectType('audiovisuel')"
+                >Audiovisuel</a
+              >
+            </li>
           </ul>
         </li>
         <li @click="displayMenu()">
@@ -110,6 +132,7 @@
   </header>
 </template>
 <script>
+import $ from 'jquery'
 export default {
   name: 'Header',
 
@@ -128,21 +151,26 @@ export default {
     }
   },
 
-  mounted() {
-    document.getElementById('projects-link').onmouseover = function () {
-      this.isOnHover = true
-      console.log(this.isOnHover)
-    }
-    document.getElementById('projects-link').onmouseout = function () {
-      this.isOnHover = false
-      console.log(this.isOnHover)
-    }
-  },
+  // mounted() {
+  //   document.getElementById('projects-link').onmouseover = function () {
+  //     this.isOnHover = true
+  //     $('sub-menu').css('display', 'block')
+  //   }
+  //   document.getElementById('projects-link').onmouseout = function () {
+  //     this.isOnHover = false
+  //     $('sub-menu').css('display', 'none')
+  //   }
+  // },
 
   methods: {
     displayMenu() {
       this.isMenuActive = !this.isMenuActive
       this.isChecked = !this.isChecked
+    },
+
+    selectProjectType(e) {
+      this.$root.$emit('selectProjectType', e)
+      $('.sub-menu').removeClass('sub-menu-active')
     },
   },
 }

@@ -3,60 +3,6 @@
   <div id="projects" class="projects section">
     <div class="projects-template">
       <div class="projects-title"><h2>Réalisations</h2></div>
-      <!-- <div class="projects-nav">
-        <h2>Projets</h2>
-        <div class="burger">
-          <input
-            id="menu_projects_checkbox"
-            v-model="isChecked"
-            type="checkbox"
-            @click="displayProjectMenu()"
-          />
-          <label for="menu_projects_checkbox">
-            <div></div>
-            <div></div>
-            <div></div>
-          </label>
-        </div>
-        <ul :class="isProjectMenuActive ? 'project-menu-active' : ''">
-          <li
-            id="prog"
-            @click="
-              selectType('prog')
-              displayProjectMenu()
-            "
-          >
-            <h3 :class="progIsActive ? 'active' : ''">Programmation</h3>
-          </li>
-          <li
-            id="integration"
-            @click="
-              selectType('integration')
-              displayProjectMenu()
-            "
-          >
-            <h3 :class="integrationIsActive ? 'active' : ''">Intégration</h3>
-          </li>
-          <li
-            id="design"
-            @click="
-              selectType('design')
-              displayProjectMenu()
-            "
-          >
-            <h3 :class="designIsActive ? 'active' : ''">Design</h3>
-          </li>
-          <li
-            id="audiovisuel"
-            @click="
-              selectType('audiovisuel')
-              displayProjectMenu()
-            "
-          >
-            <h3 :class="audiovisuelIsActive ? 'active' : ''">Audiovisuel</h3>
-          </li>
-        </ul>
-      </div> -->
       <div class="projects-template--wrapper">
         <div
           v-for="(project, index) in currentType.length"
@@ -107,7 +53,10 @@
           <div class="project-brief">
             <div class="project-brief-header">
               {{
-                progIsActive || integrationIsActive ? 'Langages' : 'Logiciels'
+                currentType == allProjects.prog ||
+                currentType == allProjects.integration
+                  ? 'Langages'
+                  : 'Logiciels'
               }}
             </div>
             <div
@@ -173,52 +122,38 @@ import projects from '@/assets/data/projects.js'
 export default {
   name: 'Projects',
 
+  props: {},
+
   data() {
     return {
       allProjects: projects,
       currentType: projects.prog,
       selectedProject: {},
       modaleIsDisplayed: false,
-      progIsActive: true,
-      integrationIsActive: false,
-      designIsActive: false,
-      audiovisuelIsActive: false,
       isProjectMenuActive: false,
       isChecked: false,
     }
   },
 
-  mounted() {},
-
-  methods: {
-    selectType(e) {
+  mounted() {
+    this.$root.$on('selectProjectType', (e) => {
       if (e === 'prog') {
-        this.progIsActive = true
-        this.integrationIsActive = false
-        this.designIsActive = false
-        this.audiovisuelIsActive = false
+        this.modaleIsDisplayed = false
         return (this.currentType = this.allProjects.prog)
       } else if (e === 'integration') {
-        this.progIsActive = false
-        this.integrationIsActive = true
-        this.designIsActive = false
-        this.audiovisuelIsActive = false
+        this.modaleIsDisplayed = false
         return (this.currentType = this.allProjects.integration)
       } else if (e === 'design') {
-        this.progIsActive = false
-        this.integrationIsActive = false
-        this.designIsActive = true
-        this.audiovisuelIsActive = false
+        this.modaleIsDisplayed = false
         return (this.currentType = this.allProjects.design)
       } else if (e === 'audiovisuel') {
-        this.progIsActive = false
-        this.integrationIsActive = false
-        this.designIsActive = false
-        this.audiovisuelIsActive = true
+        this.modaleIsDisplayed = false
         return (this.currentType = this.allProjects.audiovisuel)
       }
-    },
+    })
+  },
 
+  methods: {
     selectProject(e) {
       this.selectedProject = e
     },

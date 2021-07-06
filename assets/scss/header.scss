@@ -98,6 +98,7 @@ header {
       align-items: center;
 
       .sub-menu {
+        display: none;
         position: absolute;
         cursor: pointer;
         height: 400%;
@@ -107,10 +108,24 @@ header {
         text-transform: uppercase;
         z-index: 999;
         box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
+        border-radius: 5px;
+
+        &.sub-menu-active {
+          display: block;
+        }
 
         li {
           background-color: #fff;
           height: 25%;
+
+          &:nth-child(1) {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+          }
+          &:nth-child(4) {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
         }
       }
 
