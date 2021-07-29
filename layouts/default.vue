@@ -1,11 +1,12 @@
 <template>
   <div>
     <client-only>
-      <full-page id="fullpage" :options="options">
+      <full-page id="fullpage" ref="fullpage" :options="options">
         <!-- eslint-disable-next-line vue/attribute-hyphenation -->
-        <Header :projectsInViewport="isOnProjectsPage" />
+        <Header :projects-in-viewport="isOnProjectsPage" />
         <Home />
         <Projects />
+        <!-- <Project-Template /> -->
         <About />
         <Competences />
         <Contact />
@@ -16,10 +17,12 @@
 </template>
 
 <script>
-// import $ from 'jquery'
+// eslint-disable-next-line no-unused-vars
+import $ from 'jquery'
 import Header from '~/components/Header'
 import Home from '~/components/Home'
 import Projects from '~/components/Projects'
+// import ProjectTemplate from '~/components/Project-Template'
 import About from '~/components/About'
 import Competences from '~/components/Competences'
 import Contact from '~/components/Contact'
@@ -30,6 +33,7 @@ export default {
     Header,
     Home,
     Projects,
+    // ProjectTemplate,
     About,
     Competences,
     Contact,
@@ -47,29 +51,34 @@ export default {
         navigation: true,
         scrollOverflow: true,
         autoscrolling: true,
-        normalScrollElements: '.project-modale, #footer-anchor',
         anchors: [
           'home-page',
           'projects-page',
+          // 'project-template-page',
           'about-page',
           'skills-page',
           'contact-page',
           'footer-page',
         ],
+        loopTop: true,
+        loopBottom: true,
+        fitToSection: true,
+        // normalScrollElements: '#modale',
+        // scrollOverflowReset: true,
       },
 
       isOnProjectsPage: false,
     }
   },
 
-  mounted() {},
-
   methods: {
     afterLoad() {
       if (location.href.includes('#projects-page')) {
         this.isOnProjectsPage = true
+        // this.$refs.fullpage.api.setAllowScrolling(false)
       } else {
         this.isOnProjectsPage = false
+        // this.$refs.fullpage.api.setAllowScrolling(true)
       }
     },
   },

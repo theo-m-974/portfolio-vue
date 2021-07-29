@@ -1,9 +1,5 @@
-.fixed {
-  transition: 200ms;
-  background-color: red;
-}
-
 header {
+  background-color: #fff;
   height: 80px;
   width: 100vw;
   font-size: 1em;
@@ -18,9 +14,7 @@ header {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
-    background-color: #fff;
     padding: 0 100px;
-    z-index: 10;
 
     @include phone {
       padding: 0;
@@ -97,46 +91,6 @@ header {
       height: 100%;
       align-items: center;
 
-      .sub-menu {
-        display: none;
-        position: absolute;
-        cursor: pointer;
-        height: 400%;
-        color: #000;
-        text-decoration: none;
-        text-align: center;
-        text-transform: uppercase;
-        z-index: 999;
-        box-shadow: 0 0 20px 0 rgba(56, 56, 56, 0.2);
-        border-radius: 5px;
-
-        &.sub-menu-active {
-          display: block;
-        }
-
-        li {
-          background-color: #fff;
-          height: 25%;
-
-          &:nth-child(1) {
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-          }
-          &:nth-child(4) {
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-          }
-        }
-      }
-
-      .projects--li {
-        &:hover {
-          .sub-menu {
-            display: block;
-          }
-        }
-      }
-
       @include phone {
         display: none;
 
@@ -155,6 +109,7 @@ header {
 
       li {
         height: 100%;
+        z-index: 999;
 
         a {
           cursor: pointer;

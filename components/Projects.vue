@@ -3,6 +3,18 @@
   <div id="projects" class="projects section">
     <div class="projects-template">
       <div class="projects-title"><h2>Réalisations</h2></div>
+      <div class="projects-nav">
+        <ul>
+          <li @click="selectProjectType('prog')"><h3>Programmation</h3></li>
+          <li @click="selectProjectType('integration')">
+            <h3>Intégration</h3>
+          </li>
+          <li @click="selectProjectType('design')"><h3>Design</h3></li>
+          <li @click="selectProjectType('audiovisuel')">
+            <h3>Audiovisuel</h3>
+          </li>
+        </ul>
+      </div>
       <div class="projects-template--wrapper">
         <div
           v-for="(project, index) in currentType.length"
@@ -22,7 +34,11 @@
           </div>
         </div>
       </div>
-      <div class="project-modale" :class="modaleIsDisplayed ? 'displayed' : ''">
+      <div
+        id="modale"
+        class="project-modale"
+        :class="modaleIsDisplayed ? 'displayed' : ''"
+      >
         <h3>{{ selectedProject.name }}</h3>
         <div class="close-btn" @click="displayModale()">X</div>
 
@@ -118,6 +134,8 @@
 
 <script>
 import projects from '@/assets/data/projects.js'
+// eslint-disable-next-line no-unused-vars
+import $ from 'jquery'
 
 export default {
   name: 'Projects',
@@ -135,8 +153,21 @@ export default {
     }
   },
 
-  mounted() {
-    this.$root.$on('selectProjectType', (e) => {
+  methods: {
+    selectProject(e) {
+      this.selectedProject = e
+    },
+
+    displayModale() {
+      this.modaleIsDisplayed = !this.modaleIsDisplayed
+    },
+
+    displayProjectMenu() {
+      this.isProjectMenuActive = !this.isProjectMenuActive
+      this.isChecked = !this.isChecked
+    },
+
+    selectProjectType(e) {
       if (e === 'prog') {
         this.modaleIsDisplayed = false
         return (this.currentType = this.allProjects.prog)
@@ -150,21 +181,6 @@ export default {
         this.modaleIsDisplayed = false
         return (this.currentType = this.allProjects.audiovisuel)
       }
-    })
-  },
-
-  methods: {
-    selectProject(e) {
-      this.selectedProject = e
-    },
-
-    displayModale() {
-      this.modaleIsDisplayed = !this.modaleIsDisplayed
-    },
-
-    displayProjectMenu() {
-      this.isProjectMenuActive = !this.isProjectMenuActive
-      this.isChecked = !this.isChecked
     },
   },
 }
